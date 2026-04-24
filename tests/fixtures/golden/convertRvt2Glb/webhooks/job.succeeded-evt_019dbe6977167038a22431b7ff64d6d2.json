@@ -1,0 +1,88 @@
+{
+  "id": "evt_019dbe6977167038a22431b7ff64d6d2",
+  "jobState": {
+    "tag": "ifc-xkt",
+    "webhook": {
+      "url": "https://webhook.site/16543115-635e-4197-9048-bc95ab035e26",
+      "eventTypes": [
+        "job.started",
+        "job.succeeded",
+        "job.failed"
+      ]
+    },
+    "tasks": [
+      {
+        "id": "import-file",
+        "operation": "import/url",
+        "fileType": "rvt",
+        "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/container.rvt"
+      },
+      {
+        "id": "convert-step-1",
+        "operation": "convert/rvt/glb",
+        "input": "import-file",
+        "engine": {
+          "name": "rvtconverter",
+          "version": "0.1.0"
+        }
+      }
+    ],
+    "id": "job_019dbe694e977585be85c70a5ba97988",
+    "ownerId": "ca_live_019d00e95c1b75b8acf1cc697fda788d",
+    "success": true,
+    "createdAt": "2026-04-24T07:34:25.687Z",
+    "startedAt": "2026-04-24T07:34:26.794Z",
+    "endedAt": "2026-04-24T07:34:36.053Z",
+    "tasksWithContext": [
+      {
+        "id": "import-file",
+        "operation": "import/url",
+        "fileType": "rvt",
+        "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/container.rvt",
+        "context": {
+          "startedAt": "2026-04-24T07:34:26.795Z",
+          "endedAt": "2026-04-24T07:34:26.916Z",
+          "errors": [],
+          "files": [
+            {
+              "path": "job/job_019dbe694e977585be85c70a5ba97988/import-file/container.rvt",
+              "fileType": "rvt",
+              "fileSize": 6868992,
+              "url": "https:/jobs.xeo.vision/media/job/job_019dbe694e977585be85c70a5ba97988/import-file/container.rvt?expires=1777019666916&signature=Nc9_X9oi_p-V4v0__HN4MiSIdH47Gl4XnnDuGYe2oQYPrAsmW8fiGYjVSzyuXz4THok1xVTOgyBMdkkLuu2jKQ"
+            }
+          ]
+        }
+      },
+      {
+        "id": "convert-step-1",
+        "operation": "convert/rvt/glb",
+        "input": "import-file",
+        "engine": {
+          "name": "rvtconverter",
+          "version": "0.1.0"
+        },
+        "context": {
+          "startedAt": "2026-04-24T07:34:26.918Z",
+          "endedAt": "2026-04-24T07:34:36.052Z",
+          "errors": [],
+          "files": [
+            {
+              "path": "job/job_019dbe694e977585be85c70a5ba97988/convert-step-1/container.glb",
+              "fileType": "glb",
+              "fileSize": 209524,
+              "url": "https:/jobs.xeo.vision/media/job/job_019dbe694e977585be85c70a5ba97988/convert-step-1/container.glb?expires=1777019676052&signature=kN_0qQCIjQ8rf8HdczpipX7_gqgXT0pC1lWn0jYbAmKKUfTL9eblcXoOFaKg5GQFHU5cTSns-czziyTJ3Gbwqw"
+            },
+            {
+              "path": "job/job_019dbe694e977585be85c70a5ba97988/convert-step-1/container.json",
+              "fileType": "xeokit-metadata",
+              "fileSize": 238936,
+              "url": "https:/jobs.xeo.vision/media/job/job_019dbe694e977585be85c70a5ba97988/convert-step-1/container.json?expires=1777019676052&signature=-MWCRfrhK1aiZyf5AlsSWLYktA3RTNnVkkmx6WTIgNmhgEjq_Z9iRFyq5iqcl1HfbMcn8qnItgTmIKgsasqlTA"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "createdAt": "2026-04-24T07:34:36.054Z",
+  "eventType": "job.succeeded"
+}

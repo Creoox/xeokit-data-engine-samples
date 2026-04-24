@@ -1,0 +1,36 @@
+{
+    "inputFile": "job/job_019dbe69094671efbcf19fe6c051ef7a/import-file/Duplex.ifc",
+    "converterApplication": "cxconverter",
+    "converterApplicationVersion": "5.6.11",
+    "conversionDate": "2026-04-24 07:34:08",
+    "gltfOutFiles": [
+        "job/job_019dbe69094671efbcf19fe6c051ef7a/convert-step-1/Duplex.glb"
+    ],
+    "metadataOutFiles": [
+        "job/job_019dbe69094671efbcf19fe6c051ef7a/convert-step-1/Duplex.json"
+    ],
+    "numGltfNodes": 929,
+    "numGltfAccessors": 342,
+    "numGltfAccessorsIncludingReused": 1366,
+    "numGltfMeshes": 228,
+    "numGltfMeshesIncludingReused": 683,
+    "numGltfVertices": 7420,
+    "numGltfVerticesIncludingReused": 17444,
+    "numGltfTriangles": 2473,
+    "numGltfTrianglesIncludingReused": 30864,
+    "numCreatedMetaObjects": 246,
+    "numExportedPropertySetsOrElementQuantities": 0,
+    "modelBoundsMax": [
+        9.04149998999999,
+        4.382733910000017,
+        9.000000000000002
+    ],
+    "modelBoundsMin": [
+        -0.241500190000012,
+        -22.182733909999982,
+        -1.5500000100000002
+    ],
+    "generalMessages": [],
+    "warnings": [],
+    "errors": []
+}

@@ -1,0 +1,169 @@
+{
+  "tag": "ifc-xkt",
+  "webhook": {
+    "url": "https://webhook.site/961b572d-991f-4c32-bc9f-bfccd23ccaaf",
+    "eventTypes": [
+      "job.started",
+      "job.succeeded",
+      "job.failed"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "import-file",
+      "operation": "import/url",
+      "fileType": "ifc",
+      "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/Duplex.ifc"
+    },
+    {
+      "id": "convert-step-1",
+      "operation": "convert/ifc/glb",
+      "input": "import-file",
+      "engine": {
+        "name": "cxconverter",
+        "version": "5.6.11"
+      }
+    },
+    {
+      "id": "export-step-1",
+      "operation": "export/url",
+      "input": "convert-step-1",
+      "archiveMultipleFiles": true
+    },
+    {
+      "id": "convert-step-2",
+      "operation": "convert/glb/xkt",
+      "input": "convert-step-1",
+      "engine": {
+        "name": "xeokit-convert",
+        "version": "1.3.1",
+        "options": {
+          "includeMetadata": true
+        }
+      }
+    },
+    {
+      "id": "export-step-2",
+      "operation": "export/url",
+      "input": "convert-step-2"
+    }
+  ],
+  "id": "job_019d066353ee7788ab176778788c0479",
+  "ownerId": "ca_test_019d00cc4bcc77cd820c8821038a7b88",
+  "success": true,
+  "createdAt": "2026-03-19T13:57:46.095Z",
+  "startedAt": "2026-03-19T13:57:47.492Z",
+  "endedAt": "2026-03-19T13:57:50.110Z",
+  "tasksWithContext": [
+    {
+      "id": "import-file",
+      "operation": "import/url",
+      "fileType": "ifc",
+      "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/Duplex.ifc",
+      "context": {
+        "startedAt": "2026-03-19T13:57:47.494Z",
+        "endedAt": "2026-03-19T13:57:47.641Z",
+        "files": [
+          {
+            "path": "job/job_019d066353ee7788ab176778788c0479/import-file/Duplex.ifc",
+            "fileType": "ifc",
+            "fileSize": 2380763,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d066353ee7788ab176778788c0479/import-file/Duplex.ifc?expires=1773932267640&signature=K-367QJmZ2Qe2o92QVlrFZvtRO1_AxrHf0mQkYXdlAo0m65b0sPM_1XQAH_3oAIMWCSe2iw6Hlun7gV6FyWy6w"
+          }
+        ]
+      }
+    },
+    {
+      "id": "convert-step-1",
+      "operation": "convert/ifc/glb",
+      "input": "import-file",
+      "engine": {
+        "name": "cxconverter",
+        "version": "5.6.11"
+      },
+      "context": {
+        "startedAt": "2026-03-19T13:57:47.648Z",
+        "endedAt": "2026-03-19T13:57:48.354Z",
+        "files": [
+          {
+            "path": "job/job_019d066353ee7788ab176778788c0479/convert-step-1/Duplex.glb",
+            "fileType": "glb",
+            "fileSize": 338548,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d066353ee7788ab176778788c0479/convert-step-1/Duplex.glb?expires=1773932268351&signature=yYgGapeI5WNEPfPhNLtE21fgy9n_WWmrwifN7QbVIomqAj45bBQ5jDVu14CBvRorWO7vsbWBxYZbh2grGxaBhA"
+          },
+          {
+            "path": "job/job_019d066353ee7788ab176778788c0479/convert-step-1/Duplex.json",
+            "fileType": "xeokit-metadata",
+            "fileSize": 420570,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d066353ee7788ab176778788c0479/convert-step-1/Duplex.json?expires=1773932268351&signature=S9izod1s7fpO1YhXa3qbjWlfg7F01sVPN-D9J7GwuTdyKrKM5RoZYBX5F8h0SnNMEjxkxZPDw2EihJ20yw7T-A"
+          },
+          {
+            "path": "job/job_019d066353ee7788ab176778788c0479/convert-step-1/Duplex.manifest.json",
+            "fileType": "xeokit-manifest",
+            "fileSize": 1130,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d066353ee7788ab176778788c0479/convert-step-1/Duplex.manifest.json?expires=1773932268354&signature=hCed_SRRRavJB0p3yWWTb5Au-pYM-N1RRoMPuwJtidZ2gxSYIhDMgsFeSn2YmmlRKiJ2tbJ9Jb71n5Vkcpse9g"
+          }
+        ]
+      }
+    },
+    {
+      "id": "export-step-1",
+      "operation": "export/url",
+      "input": "convert-step-1",
+      "archiveMultipleFiles": true,
+      "context": {
+        "startedAt": "2026-03-19T13:57:48.356Z",
+        "endedAt": "2026-03-19T13:57:48.414Z",
+        "files": [
+          {
+            "path": "job/job_019d066353ee7788ab176778788c0479/export-step-1/files.zip",
+            "fileType": "archive",
+            "fileSize": 144787,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d066353ee7788ab176778788c0479/export-step-1/files.zip?expires=1773932268414&signature=Z-dcNRCkA16APTBKa0Lq77jF0VyjtR7LIG3rjFBLwK_QfIYKqvPeXkRyuL-N9NLaGc9HRdobZjfKa-nlIJ7RBQ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "convert-step-2",
+      "operation": "convert/glb/xkt",
+      "input": "convert-step-1",
+      "engine": {
+        "name": "xeokit-convert",
+        "version": "1.3.1",
+        "options": {
+          "includeMetadata": true
+        }
+      },
+      "context": {
+        "startedAt": "2026-03-19T13:57:48.415Z",
+        "endedAt": "2026-03-19T13:57:50.107Z",
+        "files": [
+          {
+            "path": "job/job_019d066353ee7788ab176778788c0479/convert-step-2/Duplex.xkt",
+            "fileType": "xkt",
+            "fileSize": 778156,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d066353ee7788ab176778788c0479/convert-step-2/Duplex.xkt?expires=1773932270106&signature=Wt0S3urR6kT7qdMobl7ztrzC_g-aQPv6TS5yT6KxuSjLDoLBhZ9B9tVxFUJrs-W7bjKi9xigCJGi4cVtLA-VNg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "export-step-2",
+      "operation": "export/url",
+      "input": "convert-step-2",
+      "context": {
+        "startedAt": "2026-03-19T13:57:50.108Z",
+        "endedAt": "2026-03-19T13:57:50.109Z",
+        "files": [
+          {
+            "path": "job/job_019d066353ee7788ab176778788c0479/convert-step-2/Duplex.xkt",
+            "fileType": "xkt",
+            "fileSize": 778156,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d066353ee7788ab176778788c0479/convert-step-2/Duplex.xkt?expires=1773932270106&signature=Wt0S3urR6kT7qdMobl7ztrzC_g-aQPv6TS5yT6KxuSjLDoLBhZ9B9tVxFUJrs-W7bjKi9xigCJGi4cVtLA-VNg"
+          }
+        ]
+      }
+    }
+  ]
+}

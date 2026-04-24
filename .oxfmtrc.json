@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "experimentalSortPackageJson": false,
+  "ignorePatterns": [
+    "src/bindings/*ts",
+    ".sample-outputs/**",
+    "tests/fixtures/golden/**"
+  ]
+}

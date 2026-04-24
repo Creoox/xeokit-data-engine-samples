@@ -1,0 +1,40 @@
+{
+  "id": "evt_019d255cadd173f3bb8aa69776218a69",
+  "jobState": {
+    "tag": "ifc-xkt",
+    "webhook": {
+      "url": "https://webhook.site/898630b3-dc02-4e64-b5ac-f0180ff35561",
+      "eventTypes": [
+        "job.started",
+        "job.succeeded",
+        "job.failed"
+      ]
+    },
+    "tasks": [
+      {
+        "id": "import-file",
+        "operation": "import/url",
+        "fileType": "rvt",
+        "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/container.rvt"
+      },
+      {
+        "id": "convert-step-1",
+        "operation": "convert/rvt/glb",
+        "input": "import-file",
+        "engine": {
+          "name": "rvtconverter",
+          "version": "0.1.0"
+        }
+      }
+    ],
+    "id": "job_019d255cac387706907da75824e55e7e",
+    "ownerId": "ca_local_019d255a1680760db8b17406bc559742",
+    "success": false,
+    "createdAt": "2026-03-25T14:18:43.641Z",
+    "startedAt": "2026-03-25T14:18:44.048Z",
+    "endedAt": null,
+    "tasksWithContext": []
+  },
+  "createdAt": "2026-03-25T14:18:44.049Z",
+  "eventType": "job.started"
+}

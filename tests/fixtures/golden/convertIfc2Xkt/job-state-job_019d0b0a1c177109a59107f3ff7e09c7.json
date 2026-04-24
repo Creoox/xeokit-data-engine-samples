@@ -1,0 +1,169 @@
+{
+  "tag": "ifc-xkt",
+  "webhook": {
+    "url": "https://webhook.site/961b572d-991f-4c32-bc9f-bfccd23ccaaf",
+    "eventTypes": [
+      "job.started",
+      "job.succeeded",
+      "job.failed"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "import-file",
+      "operation": "import/url",
+      "fileType": "ifc",
+      "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/Duplex.ifc"
+    },
+    {
+      "id": "convert-step-1",
+      "operation": "convert/ifc/glb",
+      "input": "import-file",
+      "engine": {
+        "name": "cxconverter",
+        "version": "5.6.11"
+      }
+    },
+    {
+      "id": "export-step-1",
+      "operation": "export/url",
+      "input": "convert-step-1",
+      "archiveMultipleFiles": true
+    },
+    {
+      "id": "convert-step-2",
+      "operation": "convert/glb/xkt",
+      "input": "convert-step-1",
+      "engine": {
+        "name": "xeokit-convert",
+        "version": "1.3.1",
+        "options": {
+          "includeMetadata": true
+        }
+      }
+    },
+    {
+      "id": "export-step-2",
+      "operation": "export/url",
+      "input": "convert-step-2"
+    }
+  ],
+  "id": "job_019d0b0a1c177109a59107f3ff7e09c7",
+  "ownerId": "ca_test_019d00cc4bcc77cd820c8821038a7b88",
+  "success": true,
+  "createdAt": "2026-03-20T11:38:25.176Z",
+  "startedAt": "2026-03-20T11:38:25.295Z",
+  "endedAt": "2026-03-20T11:38:27.724Z",
+  "tasksWithContext": [
+    {
+      "id": "import-file",
+      "operation": "import/url",
+      "fileType": "ifc",
+      "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/Duplex.ifc",
+      "context": {
+        "startedAt": "2026-03-20T11:38:25.297Z",
+        "endedAt": "2026-03-20T11:38:25.364Z",
+        "files": [
+          {
+            "path": "job/job_019d0b0a1c177109a59107f3ff7e09c7/import-file/Duplex.ifc",
+            "fileType": "ifc",
+            "fileSize": 2380763,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d0b0a1c177109a59107f3ff7e09c7/import-file/Duplex.ifc?expires=1774010305362&signature=LIumrkwIe21xIbCAV3wew9OwbWhvZGM23XXaQAIH5GiazKURmIue1ALO8bBhiBjUq2iFVOpHzHHWc6YeZ_-_qg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "convert-step-1",
+      "operation": "convert/ifc/glb",
+      "input": "import-file",
+      "engine": {
+        "name": "cxconverter",
+        "version": "5.6.11"
+      },
+      "context": {
+        "startedAt": "2026-03-20T11:38:25.374Z",
+        "endedAt": "2026-03-20T11:38:26.050Z",
+        "files": [
+          {
+            "path": "job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-1/Duplex.glb",
+            "fileType": "glb",
+            "fileSize": 338548,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-1/Duplex.glb?expires=1774010306047&signature=LmMMblnmUPh_AfyheQYgeA4qmOZf5DfFwj0WluYmuyK_tg-fgGaKC7g6lIHAnc0--PKQGiGal0zp6H1AwyLHpQ"
+          },
+          {
+            "path": "job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-1/Duplex.json",
+            "fileType": "xeokit-metadata",
+            "fileSize": 420570,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-1/Duplex.json?expires=1774010306047&signature=mRvEJamB06OpfGzl_PbC1Hzp7SghXYcwOwvEGMg563RcW2sHtbUiZnKobd_ji6WFzR4mgRPhlhp7jd9anBIkNg"
+          },
+          {
+            "path": "job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-1/Duplex.manifest.json",
+            "fileType": "xeokit-manifest",
+            "fileSize": 1130,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-1/Duplex.manifest.json?expires=1774010306050&signature=K6u8DNomwmHDsQw7OHoVUGRnO_CEOlfXvGuHDwoeIszliugecxOFsWx-_NONWzwb3g25gApuKMRQzJsI9jKqnQ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "export-step-1",
+      "operation": "export/url",
+      "input": "convert-step-1",
+      "archiveMultipleFiles": true,
+      "context": {
+        "startedAt": "2026-03-20T11:38:26.052Z",
+        "endedAt": "2026-03-20T11:38:26.117Z",
+        "files": [
+          {
+            "path": "job/job_019d0b0a1c177109a59107f3ff7e09c7/export-step-1/files.zip",
+            "fileType": "archive",
+            "fileSize": 144787,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d0b0a1c177109a59107f3ff7e09c7/export-step-1/files.zip?expires=1774010306117&signature=C_YAT-NSz1E-q1T9lIPO7CS8nAZGN7vL-YRvT8mM664yqsVG_cRZu_iea9Ex1sg5Ql1JNFc32HO5WDU0zJxqgg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "convert-step-2",
+      "operation": "convert/glb/xkt",
+      "input": "convert-step-1",
+      "engine": {
+        "name": "xeokit-convert",
+        "version": "1.3.1",
+        "options": {
+          "includeMetadata": true
+        }
+      },
+      "context": {
+        "startedAt": "2026-03-20T11:38:26.118Z",
+        "endedAt": "2026-03-20T11:38:27.719Z",
+        "files": [
+          {
+            "path": "job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-2/Duplex.xkt",
+            "fileType": "xkt",
+            "fileSize": 778156,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-2/Duplex.xkt?expires=1774010307719&signature=JP8_OG_hGXqW7wM-86zFjgyfrfd_UgP-sKsixXh9ZlDQBkVJIGOz__3X8iMKDXHZqZ7gJ1eehJrUhUj3TUoa6g"
+          }
+        ]
+      }
+    },
+    {
+      "id": "export-step-2",
+      "operation": "export/url",
+      "input": "convert-step-2",
+      "context": {
+        "startedAt": "2026-03-20T11:38:27.721Z",
+        "endedAt": "2026-03-20T11:38:27.722Z",
+        "files": [
+          {
+            "path": "job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-2/Duplex.xkt",
+            "fileType": "xkt",
+            "fileSize": 778156,
+            "url": "https:/jobs.xeo.vision/media/job/job_019d0b0a1c177109a59107f3ff7e09c7/convert-step-2/Duplex.xkt?expires=1774010307719&signature=JP8_OG_hGXqW7wM-86zFjgyfrfd_UgP-sKsixXh9ZlDQBkVJIGOz__3X8iMKDXHZqZ7gJ1eehJrUhUj3TUoa6g"
+          }
+        ]
+      }
+    }
+  ]
+}

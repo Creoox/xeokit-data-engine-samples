@@ -1,0 +1,75 @@
+{
+  "data": {
+    "tag": "invalid-payload",
+    "tasks": [
+      {
+        "operation": "import/url",
+        "id": "task-1-import",
+        "fileType": "rvt",
+        "url": "https://example.com/path/to/your-file.rvt"
+      },
+      {
+        "operation": "convert/rvt/glb",
+        "id": "task-2-rvt-to-glb",
+        "input": "WRONG-CONTENT1",
+        "engine": {
+          "name": "rvtconverter",
+          "version": "0.1.0"
+        }
+      }
+    ],
+    "webhook": {
+      "url": "WRONG-CONTENT2",
+      "eventTypes": [
+        "job.failed",
+        "job.started"
+      ]
+    }
+  },
+  "error": [
+    {
+      "data": [
+        {
+          "operation": "import/url",
+          "id": "task-1-import",
+          "fileType": "rvt",
+          "url": "https://example.com/path/to/your-file.rvt"
+        },
+        {
+          "operation": "convert/rvt/glb",
+          "id": "task-2-rvt-to-glb",
+          "input": "WRONG-CONTENT1",
+          "engine": {
+            "name": "rvtconverter",
+            "version": "0.1.0"
+          }
+        }
+      ],
+      "path": [
+        "tasks"
+      ],
+      "code": "predicate",
+      "expected": "Task \"task-2-rvt-to-glb\" references input \"WRONG-CONTENT1\", but that task is not defined",
+      "actual": "[{\"operation\":\"import/url\",\"id\":\"task-1-import\",\"fileType\":\"rvt\",\"url\":\"https://example.com/path/to/your-file.rvt\"},{\"operation\":\"convert/rvt/glb\",\"id\":\"task-2-rvt-to-glb\",\"input\":\"WRONG-CONTENT1\",\"engine\":{\"name\":\"rvtconverter\",\"version\":\"0.1.0\"}}]",
+      "problem": "must be Task \"task-2-rvt-to-glb\" references input \"WRONG-CONTENT1\", but that task is not defined (was [{\"operation\":\"import/url\",\"id\":\"task-1-import\",\"fileType\":\"rvt\",\"url\":\"https://example.com/path/to/your-file.rvt\"},{\"operation\":\"convert/rvt/glb\",\"id\":\"task-2-rvt-to-glb\",\"input\":\"WRONG-CONTENT1\",\"engine\":{\"name\":\"rvtconverter\",\"version\":\"0.1.0\"}}])",
+      "message": "tasks must be Task \"task-2-rvt-to-glb\" references input \"WRONG-CONTENT1\", but that task is not defined (was [{\"operation\":\"import/url\",\"id\":\"task-1-import\",\"fileType\":\"rvt\",\"url\":\"https://example.com/path/to/your-file.rvt\"},{\"operation\":\"convert/rvt/glb\",\"id\":\"task-2-rvt-to-glb\",\"input\":\"WRONG-CONTENT1\",\"engine\":{\"name\":\"rvtconverter\",\"version\":\"0.1.0\"}}])"
+    },
+    {
+      "data": "WRONG-CONTENT2",
+      "path": [
+        "webhook",
+        "url"
+      ],
+      "code": "predicate",
+      "description": "a URL string",
+      "meta": {
+        "description": "a URL string"
+      },
+      "expected": "a URL string",
+      "actual": "\"WRONG-CONTENT2\"",
+      "problem": "must be a URL string (was \"WRONG-CONTENT2\")",
+      "message": "webhook.url must be a URL string (was \"WRONG-CONTENT2\")"
+    }
+  ],
+  "success": false
+}

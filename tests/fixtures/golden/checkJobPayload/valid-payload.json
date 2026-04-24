@@ -1,0 +1,27 @@
+{
+  "tag": "valid-payload",
+  "tasks": [
+    {
+      "operation": "import/url",
+      "id": "task-1-import",
+      "fileType": "rvt",
+      "url": "https://example.com/path/to/your-file.rvt"
+    },
+    {
+      "operation": "convert/rvt/glb",
+      "id": "task-2-rvt-to-glb",
+      "input": "task-1-import",
+      "engine": {
+        "name": "rvtconverter",
+        "version": "0.1.0"
+      }
+    }
+  ],
+  "webhook": {
+    "url": "http://my-webhook-handler.example",
+    "eventTypes": [
+      "job.failed",
+      "job.started"
+    ]
+  }
+}

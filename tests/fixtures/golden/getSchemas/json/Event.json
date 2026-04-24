@@ -1,0 +1,1328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Event",
+  "properties": {
+    "createdAt": {
+      "type": "string",
+      "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+    },
+    "eventType": {
+      "enum": [
+        "job.failed",
+        "job.started",
+        "job.succeeded"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^evt_[0-9a-f]{32}$"
+    },
+    "jobState": {
+      "type": "object",
+      "title": "JobState",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^job_[0-9a-f]{32}$"
+        },
+        "ownerId": {
+          "type": "string",
+          "pattern": "^ca_(live|test|local)_[a-zA-Z0-9]{32}$"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "engine": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "cxconverter"
+                      },
+                      "version": {
+                        "enum": [
+                          "5.6.10",
+                          "5.6.11"
+                        ]
+                      },
+                      "options": {
+                        "type": "object",
+                        "properties": {
+                          "maxFileSizeInMB": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "convert/ifc/glb"
+                  }
+                },
+                "required": [
+                  "engine",
+                  "id",
+                  "input",
+                  "operation"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "engine": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "rvtconverter"
+                      },
+                      "version": {
+                        "const": "0.1.0"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "convert/rvt/glb"
+                  }
+                },
+                "required": [
+                  "engine",
+                  "id",
+                  "input",
+                  "operation"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "engine": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "xeokit-convert"
+                      },
+                      "options": {
+                        "type": "object",
+                        "properties": {
+                          "includeMetadata": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "includeMetadata"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "version": {
+                        "const": "1.3.1"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "options",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "convert/glb/xkt"
+                  }
+                },
+                "required": [
+                  "engine",
+                  "id",
+                  "input",
+                  "operation"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "fileType": {
+                    "anyOf": [
+                      {
+                        "const": "archive",
+                        "description": "archive - Set of compressed into zip files"
+                      },
+                      {
+                        "const": "glb",
+                        "description": "glb - Binary glTF file"
+                      },
+                      {
+                        "const": "ifc",
+                        "description": "ifc - Industry Foundation Class"
+                      },
+                      {
+                        "const": "rvt",
+                        "description": "rvt - Autodesk Revit File"
+                      },
+                      {
+                        "const": "unknown",
+                        "description": "unknown - Unknown or unsupported file type"
+                      },
+                      {
+                        "const": "xeokit-manifest",
+                        "description": "xeokit-manifest - xeokit manifest file"
+                      },
+                      {
+                        "const": "xeokit-metadata",
+                        "description": "xeokit-metadata - xeokit metadata file"
+                      },
+                      {
+                        "const": "xkt",
+                        "description": "xkt - xeokit native file"
+                      }
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "import/url"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "fileType",
+                  "id",
+                  "operation",
+                  "url"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "export/upload"
+                  },
+                  "urlTargets": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fileType": {
+                          "anyOf": [
+                            {
+                              "const": "archive",
+                              "description": "archive - Set of compressed into zip files"
+                            },
+                            {
+                              "const": "glb",
+                              "description": "glb - Binary glTF file"
+                            },
+                            {
+                              "const": "ifc",
+                              "description": "ifc - Industry Foundation Class"
+                            },
+                            {
+                              "const": "rvt",
+                              "description": "rvt - Autodesk Revit File"
+                            },
+                            {
+                              "const": "unknown",
+                              "description": "unknown - Unknown or unsupported file type"
+                            },
+                            {
+                              "const": "xeokit-manifest",
+                              "description": "xeokit-manifest - xeokit manifest file"
+                            },
+                            {
+                              "const": "xeokit-metadata",
+                              "description": "xeokit-metadata - xeokit metadata file"
+                            },
+                            {
+                              "const": "xkt",
+                              "description": "xkt - xeokit native file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      },
+                      "required": [
+                        "fileType",
+                        "url"
+                      ]
+                    }
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "input",
+                  "operation",
+                  "urlTargets"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "export/url"
+                  },
+                  "archiveMultipleFiles": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "input",
+                  "operation"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "tasksWithContext": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "properties": {
+                      "endedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      },
+                      "errors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "number"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "message"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileSize": {
+                              "type": "integer"
+                            },
+                            "fileType": {
+                              "anyOf": [
+                                {
+                                  "const": "archive",
+                                  "description": "archive - Set of compressed into zip files"
+                                },
+                                {
+                                  "const": "glb",
+                                  "description": "glb - Binary glTF file"
+                                },
+                                {
+                                  "const": "ifc",
+                                  "description": "ifc - Industry Foundation Class"
+                                },
+                                {
+                                  "const": "rvt",
+                                  "description": "rvt - Autodesk Revit File"
+                                },
+                                {
+                                  "const": "unknown",
+                                  "description": "unknown - Unknown or unsupported file type"
+                                },
+                                {
+                                  "const": "xeokit-manifest",
+                                  "description": "xeokit-manifest - xeokit manifest file"
+                                },
+                                {
+                                  "const": "xeokit-metadata",
+                                  "description": "xeokit-metadata - xeokit metadata file"
+                                },
+                                {
+                                  "const": "xkt",
+                                  "description": "xkt - xeokit native file"
+                                }
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "required": [
+                            "fileSize",
+                            "fileType",
+                            "path"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "startedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      }
+                    },
+                    "required": [
+                      "endedAt",
+                      "errors",
+                      "files",
+                      "startedAt"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "engine": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "cxconverter"
+                      },
+                      "version": {
+                        "enum": [
+                          "5.6.10",
+                          "5.6.11"
+                        ]
+                      },
+                      "options": {
+                        "type": "object",
+                        "properties": {
+                          "maxFileSizeInMB": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "convert/ifc/glb"
+                  }
+                },
+                "required": [
+                  "context",
+                  "engine",
+                  "id",
+                  "input",
+                  "operation"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "properties": {
+                      "endedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      },
+                      "errors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "number"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "message"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileSize": {
+                              "type": "integer"
+                            },
+                            "fileType": {
+                              "anyOf": [
+                                {
+                                  "const": "archive",
+                                  "description": "archive - Set of compressed into zip files"
+                                },
+                                {
+                                  "const": "glb",
+                                  "description": "glb - Binary glTF file"
+                                },
+                                {
+                                  "const": "ifc",
+                                  "description": "ifc - Industry Foundation Class"
+                                },
+                                {
+                                  "const": "rvt",
+                                  "description": "rvt - Autodesk Revit File"
+                                },
+                                {
+                                  "const": "unknown",
+                                  "description": "unknown - Unknown or unsupported file type"
+                                },
+                                {
+                                  "const": "xeokit-manifest",
+                                  "description": "xeokit-manifest - xeokit manifest file"
+                                },
+                                {
+                                  "const": "xeokit-metadata",
+                                  "description": "xeokit-metadata - xeokit metadata file"
+                                },
+                                {
+                                  "const": "xkt",
+                                  "description": "xkt - xeokit native file"
+                                }
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "required": [
+                            "fileSize",
+                            "fileType",
+                            "path"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "startedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      }
+                    },
+                    "required": [
+                      "endedAt",
+                      "errors",
+                      "files",
+                      "startedAt"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "engine": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "rvtconverter"
+                      },
+                      "version": {
+                        "const": "0.1.0"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "convert/rvt/glb"
+                  }
+                },
+                "required": [
+                  "context",
+                  "engine",
+                  "id",
+                  "input",
+                  "operation"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "properties": {
+                      "endedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      },
+                      "errors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "number"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "message"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileSize": {
+                              "type": "integer"
+                            },
+                            "fileType": {
+                              "anyOf": [
+                                {
+                                  "const": "archive",
+                                  "description": "archive - Set of compressed into zip files"
+                                },
+                                {
+                                  "const": "glb",
+                                  "description": "glb - Binary glTF file"
+                                },
+                                {
+                                  "const": "ifc",
+                                  "description": "ifc - Industry Foundation Class"
+                                },
+                                {
+                                  "const": "rvt",
+                                  "description": "rvt - Autodesk Revit File"
+                                },
+                                {
+                                  "const": "unknown",
+                                  "description": "unknown - Unknown or unsupported file type"
+                                },
+                                {
+                                  "const": "xeokit-manifest",
+                                  "description": "xeokit-manifest - xeokit manifest file"
+                                },
+                                {
+                                  "const": "xeokit-metadata",
+                                  "description": "xeokit-metadata - xeokit metadata file"
+                                },
+                                {
+                                  "const": "xkt",
+                                  "description": "xkt - xeokit native file"
+                                }
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "required": [
+                            "fileSize",
+                            "fileType",
+                            "path"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "startedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      }
+                    },
+                    "required": [
+                      "endedAt",
+                      "errors",
+                      "files",
+                      "startedAt"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "engine": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "xeokit-convert"
+                      },
+                      "options": {
+                        "type": "object",
+                        "properties": {
+                          "includeMetadata": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "includeMetadata"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "version": {
+                        "const": "1.3.1"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "options",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "convert/glb/xkt"
+                  }
+                },
+                "required": [
+                  "context",
+                  "engine",
+                  "id",
+                  "input",
+                  "operation"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "properties": {
+                      "endedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      },
+                      "errors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "number"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "message"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileSize": {
+                              "type": "integer"
+                            },
+                            "fileType": {
+                              "anyOf": [
+                                {
+                                  "const": "archive",
+                                  "description": "archive - Set of compressed into zip files"
+                                },
+                                {
+                                  "const": "glb",
+                                  "description": "glb - Binary glTF file"
+                                },
+                                {
+                                  "const": "ifc",
+                                  "description": "ifc - Industry Foundation Class"
+                                },
+                                {
+                                  "const": "rvt",
+                                  "description": "rvt - Autodesk Revit File"
+                                },
+                                {
+                                  "const": "unknown",
+                                  "description": "unknown - Unknown or unsupported file type"
+                                },
+                                {
+                                  "const": "xeokit-manifest",
+                                  "description": "xeokit-manifest - xeokit manifest file"
+                                },
+                                {
+                                  "const": "xeokit-metadata",
+                                  "description": "xeokit-metadata - xeokit metadata file"
+                                },
+                                {
+                                  "const": "xkt",
+                                  "description": "xkt - xeokit native file"
+                                }
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "required": [
+                            "fileSize",
+                            "fileType",
+                            "path"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "startedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      }
+                    },
+                    "required": [
+                      "endedAt",
+                      "errors",
+                      "files",
+                      "startedAt"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "fileType": {
+                    "anyOf": [
+                      {
+                        "const": "archive",
+                        "description": "archive - Set of compressed into zip files"
+                      },
+                      {
+                        "const": "glb",
+                        "description": "glb - Binary glTF file"
+                      },
+                      {
+                        "const": "ifc",
+                        "description": "ifc - Industry Foundation Class"
+                      },
+                      {
+                        "const": "rvt",
+                        "description": "rvt - Autodesk Revit File"
+                      },
+                      {
+                        "const": "unknown",
+                        "description": "unknown - Unknown or unsupported file type"
+                      },
+                      {
+                        "const": "xeokit-manifest",
+                        "description": "xeokit-manifest - xeokit manifest file"
+                      },
+                      {
+                        "const": "xeokit-metadata",
+                        "description": "xeokit-metadata - xeokit metadata file"
+                      },
+                      {
+                        "const": "xkt",
+                        "description": "xkt - xeokit native file"
+                      }
+                    ]
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "import/url"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "context",
+                  "fileType",
+                  "id",
+                  "operation",
+                  "url"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "properties": {
+                      "endedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      },
+                      "errors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "number"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "message"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileSize": {
+                              "type": "integer"
+                            },
+                            "fileType": {
+                              "anyOf": [
+                                {
+                                  "const": "archive",
+                                  "description": "archive - Set of compressed into zip files"
+                                },
+                                {
+                                  "const": "glb",
+                                  "description": "glb - Binary glTF file"
+                                },
+                                {
+                                  "const": "ifc",
+                                  "description": "ifc - Industry Foundation Class"
+                                },
+                                {
+                                  "const": "rvt",
+                                  "description": "rvt - Autodesk Revit File"
+                                },
+                                {
+                                  "const": "unknown",
+                                  "description": "unknown - Unknown or unsupported file type"
+                                },
+                                {
+                                  "const": "xeokit-manifest",
+                                  "description": "xeokit-manifest - xeokit manifest file"
+                                },
+                                {
+                                  "const": "xeokit-metadata",
+                                  "description": "xeokit-metadata - xeokit metadata file"
+                                },
+                                {
+                                  "const": "xkt",
+                                  "description": "xkt - xeokit native file"
+                                }
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "required": [
+                            "fileSize",
+                            "fileType",
+                            "path"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "startedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      }
+                    },
+                    "required": [
+                      "endedAt",
+                      "errors",
+                      "files",
+                      "startedAt"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "export/upload"
+                  },
+                  "urlTargets": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fileType": {
+                          "anyOf": [
+                            {
+                              "const": "archive",
+                              "description": "archive - Set of compressed into zip files"
+                            },
+                            {
+                              "const": "glb",
+                              "description": "glb - Binary glTF file"
+                            },
+                            {
+                              "const": "ifc",
+                              "description": "ifc - Industry Foundation Class"
+                            },
+                            {
+                              "const": "rvt",
+                              "description": "rvt - Autodesk Revit File"
+                            },
+                            {
+                              "const": "unknown",
+                              "description": "unknown - Unknown or unsupported file type"
+                            },
+                            {
+                              "const": "xeokit-manifest",
+                              "description": "xeokit-manifest - xeokit manifest file"
+                            },
+                            {
+                              "const": "xeokit-metadata",
+                              "description": "xeokit-metadata - xeokit metadata file"
+                            },
+                            {
+                              "const": "xkt",
+                              "description": "xkt - xeokit native file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      },
+                      "required": [
+                        "fileType",
+                        "url"
+                      ]
+                    }
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "context",
+                  "id",
+                  "input",
+                  "operation",
+                  "urlTargets"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "properties": {
+                      "endedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      },
+                      "errors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "number"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "message"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileSize": {
+                              "type": "integer"
+                            },
+                            "fileType": {
+                              "anyOf": [
+                                {
+                                  "const": "archive",
+                                  "description": "archive - Set of compressed into zip files"
+                                },
+                                {
+                                  "const": "glb",
+                                  "description": "glb - Binary glTF file"
+                                },
+                                {
+                                  "const": "ifc",
+                                  "description": "ifc - Industry Foundation Class"
+                                },
+                                {
+                                  "const": "rvt",
+                                  "description": "rvt - Autodesk Revit File"
+                                },
+                                {
+                                  "const": "unknown",
+                                  "description": "unknown - Unknown or unsupported file type"
+                                },
+                                {
+                                  "const": "xeokit-manifest",
+                                  "description": "xeokit-manifest - xeokit manifest file"
+                                },
+                                {
+                                  "const": "xeokit-metadata",
+                                  "description": "xeokit-metadata - xeokit metadata file"
+                                },
+                                {
+                                  "const": "xkt",
+                                  "description": "xkt - xeokit native file"
+                                }
+                              ]
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "required": [
+                            "fileSize",
+                            "fileType",
+                            "path"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "startedAt": {
+                        "type": "string",
+                        "pattern": "^([+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))(T((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24:?00)([,.]\\d+(?!:))?)?(\\17[0-5]\\d([,.]\\d+)?)?([Zz]|([+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
+                      }
+                    },
+                    "required": [
+                      "endedAt",
+                      "errors",
+                      "files",
+                      "startedAt"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "input": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "const": "export/url"
+                  },
+                  "archiveMultipleFiles": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "context",
+                  "id",
+                  "input",
+                  "operation"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "failedTaskId": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "webhook": {
+          "type": "object",
+          "properties": {
+            "eventTypes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "enum": [
+                  "job.failed",
+                  "job.started",
+                  "job.succeeded"
+                ]
+              }
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "eventTypes",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "createdAt",
+        "endedAt",
+        "id",
+        "ownerId",
+        "startedAt",
+        "success",
+        "tasks",
+        "tasksWithContext"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "createdAt",
+    "eventType",
+    "id",
+    "jobState"
+  ]
+}
