@@ -21,8 +21,8 @@ RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${XDES_API_URL}/api/jobs/async" 
         \"tag\": \"rvt-xkt-timestamped\",
         \"tasks\": [
             {\"id\": \"import-file\", \"operation\": \"import/url\", \"fileType\": \"rvt\", \"url\": \"${RVT_FILE_URL}\"},
-            {\"id\": \"convert-step-1\", \"operation\": \"convert/rvt/glb\", \"input\": \"import-file\", \"engine\": {\"name\": \"rvtconverter\", \"version\": \"0.1.0\"}},
-            {\"id\": \"convert-step-2\", \"operation\": \"convert/glb/xkt\", \"input\": \"convert-step-1\", \"engine\": {\"name\": \"xeokit-convert\", \"version\": \"1.3.1\", \"options\": {\"includeMetadata\": true}}},
+            {\"id\": \"convert-step-1\", \"operation\": \"convert/rvt/glb\", \"input\": \"import-file\", \"engine\": {\"name\": \"xeoRvt\", \"version\": \"0.2.0\"}},
+            {\"id\": \"convert-step-2\", \"operation\": \"convert/glb/xkt\", \"input\": \"convert-step-1\", \"engine\": {\"name\": \"xeokit-convert\", \"version\": \"1.3.2\", \"options\": {\"includeMetadata\": true}}},
             {\"id\": \"export-step-1\", \"operation\": \"export/url\", \"input\": \"convert-step-2\"}
         ]
     }")

@@ -61,8 +61,8 @@ async function initRvt2GlbJob(): Promise<JobState> {
         operation: "convert/rvt/glb",
         input: "import-file",
         engine: {
-          name: "rvtconverter",
-          version: "0.1.0",
+          name: "xeoRvt",
+          version: "0.2.0",
         },
       },
     ],

@@ -189,7 +189,7 @@ Here's a complete example that imports an IFC file, converts it through multiple
       "id": "ifc-to-glb",
       "operation": "convert/ifc/glb",
       "engine": {
-        "name": "cxconverter",
+        "name": "xeoIfc",
         "version": "5.6.10"
       },
       "input": "import-ifc"
@@ -199,7 +199,7 @@ Here's a complete example that imports an IFC file, converts it through multiple
       "operation": "convert/glb/xkt",
       "engine": {
         "name": "xeokit-convert",
-        "version": "1.3.1",
+        "version": "1.3.2",
         "options": {
           "includeMetadata": true
         }

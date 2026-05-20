@@ -132,8 +132,8 @@ async function main() {
         id: "task-2-rvt-to-glb",
         input: "WRONG-CONTENT1",
         engine: {
-          name: "rvtconverter",
-          version: "0.1.0",
+          name: "xeoRvt",
+          version: "0.2.0",
         },
       },
     ],
@@ -161,8 +161,8 @@ async function main() {
         id: "task-2-rvt-to-glb",
         input: "task-1-import",
         engine: {
-          name: "rvtconverter",
-          version: "0.1.0",
+          name: "xeoRvt",
+          version: "0.2.0",
         },
       },
     ],
