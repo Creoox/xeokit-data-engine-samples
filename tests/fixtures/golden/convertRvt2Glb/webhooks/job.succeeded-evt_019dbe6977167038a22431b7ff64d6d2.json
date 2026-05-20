@@ -22,8 +22,8 @@
         "operation": "convert/rvt/glb",
         "input": "import-file",
         "engine": {
-          "name": "rvtconverter",
-          "version": "0.1.0"
+          "name": "xeoRvt",
+          "version": "0.2.0"
         }
       }
     ],
@@ -58,8 +58,8 @@
         "operation": "convert/rvt/glb",
         "input": "import-file",
         "engine": {
-          "name": "rvtconverter",
-          "version": "0.1.0"
+          "name": "xeoRvt",
+          "version": "0.2.0"
         },
         "context": {
           "startedAt": "2026-04-24T07:34:26.918Z",

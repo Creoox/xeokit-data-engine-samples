@@ -84,7 +84,7 @@ async function initIfc2XktJob(): Promise<JobState> {
         operation: "convert/ifc/glb",
         input: "import-file",
         engine: {
-          name: "cxconverter",
+          name: "xeoIfc",
           version: "5.6.11",
         },
       },
@@ -100,7 +100,7 @@ async function initIfc2XktJob(): Promise<JobState> {
         input: "convert-step-1",
         engine: {
           name: "xeokit-convert",
-          version: "1.3.1",
+          version: "1.3.2",
           options: {
             includeMetadata: true,
           },

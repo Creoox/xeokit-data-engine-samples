@@ -1,6 +1,6 @@
 /* eslint-disable */
 /**
- * 2026-03-25T14:29:59.479Z
+ * 2026-05-20T12:43:23.669Z
  * This file was automatically generated from XEOKIT-DATA-ENGINE JSONSchema by json-schema-to-typescript.
  * DO NOT MODIFY IT BY HAND. Instead, regenerate it if JSONSchema changed,
  */
@@ -9,7 +9,7 @@ export interface Job {
   tasks: (
     | {
         engine: {
-          name: "cxconverter";
+          name: "xeoIfc";
           version: "5.6.10" | "5.6.11";
           options?: {
             maxFileSizeInMB?: number;
@@ -22,8 +22,8 @@ export interface Job {
       }
     | {
         engine: {
-          name: "rvtconverter";
-          version: "0.1.0";
+          name: "xeoRvt";
+          version: "0.2.0";
         };
         id: string;
         input: string;
@@ -36,7 +36,7 @@ export interface Job {
           options: {
             includeMetadata: boolean;
           };
-          version: "1.3.1";
+          version: "1.3.2";
         };
         id: string;
         input: string;
