@@ -1,5 +1,5 @@
 /* eslint-disable */
-// 2026-04-24T07:34:02.520Z
+// 2026-05-22T10:50:02.646Z
 
 // This file was automatically generated from XEOKIT-DATA-ENGINE JSONSchema by quicktype
 
@@ -53,8 +53,8 @@ export interface TaskEngine {
 }
 
 export enum Name {
-    Cxconverter = "cxconverter",
-    Rvtconverter = "rvtconverter",
+    XeoIfc = "xeoIfc",
+    XeoRvt = "xeoRvt",
     XeokitConvert = "xeokit-convert",
 }
 
@@ -64,8 +64,8 @@ export interface PurpleOptions {
 }
 
 export enum Version {
-    The010 = "0.1.0",
-    The131 = "1.3.1",
+    The020 = "0.2.0",
+    The132 = "1.3.2",
     The5610 = "5.6.10",
     The5611 = "5.6.11",
 }

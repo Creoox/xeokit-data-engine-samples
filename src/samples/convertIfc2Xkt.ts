@@ -14,7 +14,7 @@
  *
  * **Workflow:**
  * 1. Import IFC file from URL
- * 2. Convert IFC to GLB using cxconverter
+ * 2. Convert IFC to GLB using xeoIFC
  * 3. Export GLB files as ZIP archive
  * 4. Convert GLB to XKT using xeokit-convert
  * 5. Export final XKT file
@@ -51,7 +51,7 @@ import { JobState } from "../bindings/event.interface.js";
  *
  * **Job Pipeline:**
  * - `import-file`: Downloads IFC from remote URL
- * - `convert-step-1`: Converts IFC → GLB using cxconverter
+ * - `convert-step-1`: Converts IFC → GLB using xeoIFC
  * - `export-step-1`: Packages GLB files into a ZIP archive
  * - `convert-step-2`: Converts GLB → XKT using xeokit-convert
  * - `export-step-2`: Exports final XKT file
