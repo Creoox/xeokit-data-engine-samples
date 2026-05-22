@@ -4,7 +4,7 @@ set -e
 JOB_ID=$1
 if [ -z "$JOB_ID" ]; then echo "Usage: $0 <job_id>"; exit 1; fi
 
-OUTPUT_DIR=".sample-outputs/convertRvt2Xkt"
+OUTPUT_DIR=".sample-outputs/convert2Xkt"
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 mkdir -p "$OUTPUT_DIR"
 

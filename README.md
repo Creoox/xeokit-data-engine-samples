@@ -169,12 +169,21 @@ pnpm sample:convertRvt2Glb
 
 ### `submit_job.sh` — Submit a job request
 
-Submits a new job to the Xeokit Data Engine API for converting an RVT file to XKT format. Saves the job submission (initial Job state) response to `.sample-outputs/convertRvt2Xkt/`.
+Submits a new job to the Xeokit Data Engine API for converting an RVT/IFC/STEP file to XKT format. Saves the job submission (initial Job state) response to `.sample-outputs/convertRvt2Xkt/`.
 
 **Usage:**
 
 ```bash
-bash ./src_bash/submit_job.sh
+Usage: ./src_bash/submit_job.sh --type <rvt|ifc|step> [--url <source_url>]
+
+Options:
+  --type    File type to convert (rvt, ifc, or step)
+  --url     Optional source URL (uses default URL if not provided)
+
+Examples:
+  ./src_bash/submit_job.sh --type rvt
+  ./src_bash/submit_job.sh --type ifc --url https://example.com/model.ifc
+  ./src_bash/submit_job.sh --type step
 ```
 
 ---
