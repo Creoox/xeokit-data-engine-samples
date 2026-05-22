@@ -1,6 +1,6 @@
 /* eslint-disable */
 /**
- * 2026-05-22T10:50:02.438Z
+ * 2026-05-22T10:58:52.441Z
  * This file was automatically generated from XEOKIT-DATA-ENGINE JSONSchema by json-schema-to-typescript.
  * DO NOT MODIFY IT BY HAND. Instead, regenerate it if JSONSchema changed,
  */
@@ -38,6 +38,16 @@ export interface JobState {
       }
     | {
         engine: {
+          name: "xeoStep";
+          version: "0.1.0";
+        };
+        id: string;
+        input: string;
+        operation: "convert/step/glb";
+        [k: string]: unknown;
+      }
+    | {
+        engine: {
           name: "xeokit-convert";
           options: {
             includeMetadata: boolean;
@@ -50,7 +60,16 @@ export interface JobState {
         [k: string]: unknown;
       }
     | {
-        fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+        fileType:
+          | "archive"
+          | "glb"
+          | "ifc"
+          | "rvt"
+          | "step"
+          | "unknown"
+          | "xeokit-manifest"
+          | "xeokit-metadata"
+          | "xkt";
         id: string;
         operation: "import/url";
         url: string;
@@ -63,7 +82,16 @@ export interface JobState {
         input: string;
         operation: "export/upload";
         urlTargets: {
-          fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+          fileType:
+            | "archive"
+            | "glb"
+            | "ifc"
+            | "rvt"
+            | "step"
+            | "unknown"
+            | "xeokit-manifest"
+            | "xeokit-metadata"
+            | "xkt";
           url: string;
           [k: string]: unknown;
         }[];
@@ -88,7 +116,16 @@ export interface JobState {
           }[];
           files: {
             fileSize: number;
-            fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+            fileType:
+              | "archive"
+              | "glb"
+              | "ifc"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt";
             path: string;
             url?: string;
           }[];
@@ -114,7 +151,16 @@ export interface JobState {
           }[];
           files: {
             fileSize: number;
-            fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+            fileType:
+              | "archive"
+              | "glb"
+              | "ifc"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt";
             path: string;
             url?: string;
           }[];
@@ -137,7 +183,48 @@ export interface JobState {
           }[];
           files: {
             fileSize: number;
-            fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+            fileType:
+              | "archive"
+              | "glb"
+              | "ifc"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt";
+            path: string;
+            url?: string;
+          }[];
+          startedAt: string;
+        };
+        engine: {
+          name: "xeoStep";
+          version: "0.1.0";
+        };
+        id: string;
+        input: string;
+        operation: "convert/step/glb";
+      }
+    | {
+        context: {
+          endedAt: string;
+          errors: {
+            code: number;
+            message: string;
+          }[];
+          files: {
+            fileSize: number;
+            fileType:
+              | "archive"
+              | "glb"
+              | "ifc"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt";
             path: string;
             url?: string;
           }[];
@@ -163,13 +250,31 @@ export interface JobState {
           }[];
           files: {
             fileSize: number;
-            fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+            fileType:
+              | "archive"
+              | "glb"
+              | "ifc"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt";
             path: string;
             url?: string;
           }[];
           startedAt: string;
         };
-        fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+        fileType:
+          | "archive"
+          | "glb"
+          | "ifc"
+          | "rvt"
+          | "step"
+          | "unknown"
+          | "xeokit-manifest"
+          | "xeokit-metadata"
+          | "xkt";
         id: string;
         operation: "import/url";
         url: string;
@@ -186,7 +291,16 @@ export interface JobState {
           }[];
           files: {
             fileSize: number;
-            fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+            fileType:
+              | "archive"
+              | "glb"
+              | "ifc"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt";
             path: string;
             url?: string;
           }[];
@@ -196,7 +310,16 @@ export interface JobState {
         input: string;
         operation: "export/upload";
         urlTargets: {
-          fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+          fileType:
+            | "archive"
+            | "glb"
+            | "ifc"
+            | "rvt"
+            | "step"
+            | "unknown"
+            | "xeokit-manifest"
+            | "xeokit-metadata"
+            | "xkt";
           url: string;
           [k: string]: unknown;
         }[];
@@ -213,7 +336,16 @@ export interface JobState {
           }[];
           files: {
             fileSize: number;
-            fileType: "archive" | "glb" | "ifc" | "rvt" | "unknown" | "xeokit-manifest" | "xeokit-metadata" | "xkt";
+            fileType:
+              | "archive"
+              | "glb"
+              | "ifc"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt";
             path: string;
             url?: string;
           }[];

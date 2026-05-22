@@ -1,5 +1,5 @@
 /* eslint-disable */
-// 2026-05-22T10:50:02.965Z
+// 2026-05-22T10:58:52.769Z
 
 // This file was automatically generated from XEOKIT-DATA-ENGINE JSONSchema by quicktype
 
@@ -33,6 +33,7 @@ export interface Engine {
 export enum Name {
     XeoIfc = "xeoIfc",
     XeoRvt = "xeoRvt",
+    XeoStep = "xeoStep",
     XeokitConvert = "xeokit-convert",
 }
 
@@ -42,6 +43,7 @@ export interface Options {
 }
 
 export enum Version {
+    The010 = "0.1.0",
     The020 = "0.2.0",
     The132 = "1.3.2",
     The5610 = "5.6.10",
@@ -57,6 +59,8 @@ export enum Version {
  *
  * rvt - Autodesk Revit File
  *
+ * step - STEP File
+ *
  * unknown - Unknown or unsupported file type
  *
  * xeokit-manifest - xeokit manifest file
@@ -70,6 +74,7 @@ export enum FileType {
     Glb = "glb",
     Ifc = "ifc",
     Rvt = "rvt",
+    Step = "step",
     Unknown = "unknown",
     XeokitManifest = "xeokit-manifest",
     XeokitMetadata = "xeokit-metadata",
@@ -80,6 +85,7 @@ export enum Operation {
     ConvertGlbXkt = "convert/glb/xkt",
     ConvertIfcGlb = "convert/ifc/glb",
     ConvertRvtGlb = "convert/rvt/glb",
+    ConvertStepGlb = "convert/step/glb",
     ExportURL = "export/url",
     ExportUpload = "export/upload",
     ImportURL = "import/url",

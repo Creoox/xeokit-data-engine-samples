@@ -98,6 +98,42 @@
                 "type": "object",
                 "properties": {
                   "name": {
+                    "const": "xeoStep"
+                  },
+                  "version": {
+                    "const": "0.1.0"
+                  }
+                },
+                "required": [
+                  "name",
+                  "version"
+                ],
+                "additionalProperties": false
+              },
+              "id": {
+                "type": "string"
+              },
+              "input": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "convert/step/glb"
+              }
+            },
+            "required": [
+              "engine",
+              "id",
+              "input",
+              "operation"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "engine": {
+                "type": "object",
+                "properties": {
+                  "name": {
                     "const": "xeokit-convert"
                   },
                   "options": {
@@ -160,6 +196,10 @@
                   {
                     "const": "rvt",
                     "description": "rvt - Autodesk Revit File"
+                  },
+                  {
+                    "const": "step",
+                    "description": "step - STEP File"
                   },
                   {
                     "const": "unknown",
@@ -238,6 +278,10 @@
                         {
                           "const": "rvt",
                           "description": "rvt - Autodesk Revit File"
+                        },
+                        {
+                          "const": "step",
+                          "description": "step - STEP File"
                         },
                         {
                           "const": "unknown",
