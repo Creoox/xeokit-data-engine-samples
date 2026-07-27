@@ -36,7 +36,7 @@ Sample scripts demonstrating the Xeokit Data Engine API capabilities. These exam
 4. Edit `.env` and add your credentials:
 
    ```env
-   XDES_API_URL=jobs.xeo.vision
+   XDES_API_URL=https://engine-eval.xeokit.io
    XDES_API_CLIENT_ID=your-client-id-here
    XDES_API_CLIENT_SECRET=your-client-secret-here
    XDES_EXTERNAL_WEBHOOK_SITE_TOKEN=your-unique-token
