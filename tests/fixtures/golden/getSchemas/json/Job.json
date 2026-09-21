@@ -11,25 +11,94 @@
             "type": "object",
             "properties": {
               "engine": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "xeoIFCv2"
+                      },
+                      "version": {
+                        "const": "1.0.10"
+                      },
+                      "options": {
+                        "type": "object",
+                        "properties": {
+                          "configJson": {
+                            "type": "object"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "const": "xeoIfc"
+                      },
+                      "version": {
+                        "enum": [
+                          "5.11.15",
+                          "5.6.10",
+                          "5.6.11"
+                        ]
+                      },
+                      "options": {
+                        "type": "object",
+                        "properties": {
+                          "configJson": {
+                            "type": "object"
+                          },
+                          "maxFileSizeInMB": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "id": {
+                "type": "string"
+              },
+              "input": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "convert/ifc/glb"
+              }
+            },
+            "required": [
+              "engine",
+              "id",
+              "input",
+              "operation"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "engine": {
                 "type": "object",
                 "properties": {
                   "name": {
-                    "const": "xeoIfc"
+                    "const": "xeoRvt"
                   },
                   "version": {
-                    "enum": [
-                      "5.6.10",
-                      "5.6.11"
-                    ]
-                  },
-                  "options": {
-                    "type": "object",
-                    "properties": {
-                      "maxFileSizeInMB": {
-                        "type": "number"
-                      }
-                    },
-                    "additionalProperties": false
+                    "const": "0.2.0"
                   }
                 },
                 "required": [
@@ -45,7 +114,7 @@
                 "type": "string"
               },
               "operation": {
-                "const": "convert/ifc/glb"
+                "const": "convert/rfa/glb"
               }
             },
             "required": [
@@ -179,11 +248,153 @@
           {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string"
+              },
+              "input": {
+                "type": "string"
+              },
+              "operation": {
+                "const": "convert/metadata/csv"
+              },
+              "settings": {
+                "type": "object",
+                "properties": {
+                  "filters": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "conditions": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "operator": {
+                                  "enum": [
+                                    "after",
+                                    "before",
+                                    "contains",
+                                    "equals",
+                                    "greaterOrEqual",
+                                    "greaterThan",
+                                    "isEmpty",
+                                    "isFalse",
+                                    "isNotEmpty",
+                                    "isTrue",
+                                    "lessOrEqual",
+                                    "lessThan",
+                                    "notContains",
+                                    "notEquals"
+                                  ]
+                                },
+                                "property": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "operator",
+                                "property",
+                                "value"
+                              ]
+                            }
+                          },
+                          "logicOperators": {
+                            "type": "array",
+                            "items": {
+                              "enum": [
+                                "AND",
+                                "OR"
+                              ]
+                            }
+                          },
+                          "ifcTypeFilters": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "version": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "conditions",
+                          "logicOperators"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "grouping": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "criteria": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "property": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "property"
+                              ]
+                            }
+                          },
+                          "version": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "criteria"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "version": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "required": [
+              "id",
+              "input",
+              "operation"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
               "fileType": {
                 "anyOf": [
                   {
                     "const": "archive",
                     "description": "archive - Set of compressed into zip files"
+                  },
+                  {
+                    "const": "csv",
+                    "description": "csv - Metadata CSV package compressed into zip"
                   },
                   {
                     "const": "glb",
@@ -192,6 +403,10 @@
                   {
                     "const": "ifc",
                     "description": "ifc - Industry Foundation Class"
+                  },
+                  {
+                    "const": "rfa",
+                    "description": "rfa - Autodesk Revit Family File"
                   },
                   {
                     "const": "rvt",
@@ -216,6 +431,10 @@
                   {
                     "const": "xkt",
                     "description": "xkt - xeokit native file"
+                  },
+                  {
+                    "const": "xlsx",
+                    "description": "xlsx - Metadata spreadsheet file"
                   }
                 ]
               },
@@ -268,12 +487,20 @@
                           "description": "archive - Set of compressed into zip files"
                         },
                         {
+                          "const": "csv",
+                          "description": "csv - Metadata CSV package compressed into zip"
+                        },
+                        {
                           "const": "glb",
                           "description": "glb - Binary glTF file"
                         },
                         {
                           "const": "ifc",
                           "description": "ifc - Industry Foundation Class"
+                        },
+                        {
+                          "const": "rfa",
+                          "description": "rfa - Autodesk Revit Family File"
                         },
                         {
                           "const": "rvt",
@@ -298,6 +525,10 @@
                         {
                           "const": "xkt",
                           "description": "xkt - xeokit native file"
+                        },
+                        {
+                          "const": "xlsx",
+                          "description": "xlsx - Metadata spreadsheet file"
                         }
                       ]
                     },

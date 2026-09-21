@@ -1,36 +1,38 @@
 {
-    "inputFile": "job/job_019dbe69094671efbcf19fe6c051ef7a/import-file/Duplex.ifc",
-    "converterApplication": "cxconverter",
-    "converterApplicationVersion": "5.6.11",
-    "conversionDate": "2026-04-24 07:34:08",
+    "inputFile": "job/job_01a0c2b25ae272f7809307ac5afa3d97/import-file/Duplex.ifc",
+    "converterApplication": "xeoIfc",
+    "converterApplicationVersion": "5.11.15",
+    "conversionDate": "2026-09-21 06:41:06",
     "gltfOutFiles": [
-        "job/job_019dbe69094671efbcf19fe6c051ef7a/convert-step-1/Duplex.glb"
+        "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.glb"
     ],
     "metadataOutFiles": [
-        "job/job_019dbe69094671efbcf19fe6c051ef7a/convert-step-1/Duplex.json"
+        "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.json"
     ],
-    "numGltfNodes": 929,
-    "numGltfAccessors": 342,
-    "numGltfAccessorsIncludingReused": 1366,
-    "numGltfMeshes": 228,
-    "numGltfMeshesIncludingReused": 683,
-    "numGltfVertices": 7420,
-    "numGltfVerticesIncludingReused": 17444,
-    "numGltfTriangles": 2473,
-    "numGltfTrianglesIncludingReused": 30864,
+    "numGltfNodes": 1010,
+    "numGltfAccessors": 362,
+    "numGltfAccessorsIncludingReused": 1426,
+    "numGltfMeshes": 239,
+    "numGltfMeshesIncludingReused": 713,
+    "numGltfVertices": 5455,
+    "numGltfVerticesIncludingReused": 14867,
+    "numGltfTriangles": 7334,
+    "numGltfTrianglesIncludingReused": 25930,
     "numCreatedMetaObjects": 246,
     "numExportedPropertySetsOrElementQuantities": 0,
-    "modelBoundsMax": [
-        9.04149998999999,
-        4.382733910000017,
-        9.000000000000002
-    ],
     "modelBoundsMin": [
-        -0.241500190000012,
-        -22.182733909999982,
-        -1.5500000100000002
+        -0.24150018692017783,
+        -1.5500000059604657,
+        -4.382733910934466
     ],
-    "generalMessages": [],
+    "modelBoundsMax": [
+        9.04149998807906,
+        9.0,
+        22.18273391093443
+    ],
+    "generalMessages": [
+        "Settings loaded: job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.cxconverter.config.json"
+    ],
     "warnings": [],
     "errors": []
 }

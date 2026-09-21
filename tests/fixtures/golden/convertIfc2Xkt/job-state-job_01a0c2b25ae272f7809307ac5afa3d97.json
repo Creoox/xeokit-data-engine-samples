@@ -1,0 +1,208 @@
+{
+  "tag": "ifc-xkt",
+  "webhook": {
+    "url": "https://webhook.site/placeholder-unused",
+    "eventTypes": [
+      "job.started",
+      "job.succeeded",
+      "job.failed"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "import-file",
+      "operation": "import/url",
+      "fileType": "ifc",
+      "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/Duplex.ifc"
+    },
+    {
+      "id": "convert-step-1",
+      "operation": "convert/ifc/glb",
+      "input": "import-file",
+      "engine": {
+        "name": "xeoIfc",
+        "version": "5.6.11"
+      }
+    },
+    {
+      "id": "export-step-1",
+      "operation": "export/url",
+      "input": "convert-step-1",
+      "archiveMultipleFiles": true
+    },
+    {
+      "id": "convert-step-2",
+      "operation": "convert/glb/xkt",
+      "input": "convert-step-1",
+      "engine": {
+        "name": "xeokit-convert",
+        "version": "1.3.2",
+        "options": {
+          "includeMetadata": true
+        }
+      }
+    },
+    {
+      "id": "export-step-2",
+      "operation": "export/url",
+      "input": "convert-step-2"
+    }
+  ],
+  "id": "job_01a0c2b25ae272f7809307ac5afa3d97",
+  "owner": {
+    "id": "ca_test_019d00cc44f6747a8be09722ed02a593",
+    "accessPolicies": [
+      {
+        "operation": "*",
+        "properties": [
+          "convert/ifc/glb/license"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "createdAt": "2026-09-21T06:41:03.715Z",
+  "startedAt": "2026-09-21T06:41:05.292Z",
+  "endedAt": "2026-09-21T06:41:08.428Z",
+  "tasksWithContext": [
+    {
+      "id": "import-file",
+      "operation": "import/url",
+      "fileType": "ifc",
+      "url": "https://sos-ch-gva-2.exo.io/creoox-public/xeokit-data-engine-samples/Duplex.ifc",
+      "context": {
+        "startedAt": "2026-09-21T06:41:05.294Z",
+        "endedAt": "2026-09-21T06:41:05.793Z",
+        "errors": [],
+        "files": [
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/import-file/Duplex.ifc",
+            "fileType": "ifc",
+            "fileSize": 2380763,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/import-file/Duplex.ifc?expires=1789976465792&signature=yFtwGFGBe0NynG86rcHrpHKvbU5Yyir2WD9WwNYlcJuNZCcOOazMSkMJ8SIPP1mDyHVCBYxkJofRn8lm4oYVVw"
+          }
+        ]
+      }
+    },
+    {
+      "id": "convert-step-1",
+      "operation": "convert/ifc/glb",
+      "input": "import-file",
+      "engine": {
+        "name": "xeoIfc",
+        "version": "5.6.11"
+      },
+      "context": {
+        "startedAt": "2026-09-21T06:41:05.796Z",
+        "endedAt": "2026-09-21T06:41:06.634Z",
+        "errors": [],
+        "files": [
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.glb",
+            "fileType": "glb",
+            "fileSize": 311868,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.glb?expires=1789976466625&signature=DYtBe6fpGbOf9Bp7U1RLbuShA8XwPUFfCeg3Q_fTQDcy88Wr0getXVQgu3YdYM7ObqSZ-QVd9TTfaPzn9vaOoQ"
+          },
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.json",
+            "fileType": "xeokit-metadata",
+            "fileSize": 440809,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.json?expires=1789976466626&signature=XJ7hLGooipisQD35DvE07-cpMHp-G6OONHVmGJMJQ8md38kNoHlYaIk19XENTW606fJzPNNE2HZLd3nxJ5ToMw"
+          },
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.manifest.json",
+            "fileType": "xeokit-manifest",
+            "fileSize": 1233,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-1/Duplex.manifest.json?expires=1789976466634&signature=wsnmCnk0Hh3KE0h9mishVIP4kDuKPM8clFJummmEb0pmSX32kr4LdUfCHB4iCYReKadw6v1w_alc8ZbzUGbtbA"
+          }
+        ]
+      }
+    },
+    {
+      "id": "export-step-1",
+      "operation": "export/url",
+      "input": "convert-step-1",
+      "archiveMultipleFiles": true,
+      "context": {
+        "startedAt": "2026-09-21T06:41:06.637Z",
+        "endedAt": "2026-09-21T06:41:06.700Z",
+        "errors": [],
+        "files": [
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/export-step-1/files.zip",
+            "fileType": "archive",
+            "fileSize": 134419,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/export-step-1/files.zip?expires=1789976466700&signature=e_GF30fzqNwGKCvSVogIX1yVBfE96A4PUKfU5esQ1Qhj9BdsMd5Uz8vptWGTzAYsbxPLk8pwrmPXezBLDWwpXw"
+          }
+        ]
+      }
+    },
+    {
+      "id": "convert-step-2",
+      "operation": "convert/glb/xkt",
+      "input": "convert-step-1",
+      "engine": {
+        "name": "xeokit-convert",
+        "version": "1.3.2",
+        "options": {
+          "includeMetadata": true
+        }
+      },
+      "context": {
+        "startedAt": "2026-09-21T06:41:06.702Z",
+        "endedAt": "2026-09-21T06:41:08.422Z",
+        "errors": [],
+        "files": [
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.glb",
+            "fileType": "glb",
+            "fileSize": 311868,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.glb?expires=1789976468421&signature=ZMuMaj-T0d2PveNYIq_yyIJ_dGuGlZ-Hrb1_fdHiiO_xs2iWE1V3euAOHWtPVGzdasQGHy2eqbUAG2q4Qm8f2Q"
+          },
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.json",
+            "fileType": "xeokit-metadata",
+            "fileSize": 440809,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.json?expires=1789976468422&signature=DoPNSrsyBKqjHWSe4_VN_dLHp8p1jFvGnXKzfxRnLIeyQy6yN8tHOVBdkFlnDuQwD43CvHNYRGRwGuz129lnRA"
+          },
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.xkt",
+            "fileType": "xkt",
+            "fileSize": 732132,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.xkt?expires=1789976468422&signature=wMvBj9a5qE4HL-qyourI9Wy8MGboL8Ywa__nKXNirtlJHynwMN6WS10o-0_REphNocmYkMA-3xJ_AHgIAnj5Ug"
+          }
+        ]
+      }
+    },
+    {
+      "id": "export-step-2",
+      "operation": "export/url",
+      "input": "convert-step-2",
+      "context": {
+        "startedAt": "2026-09-21T06:41:08.425Z",
+        "endedAt": "2026-09-21T06:41:08.425Z",
+        "errors": [],
+        "files": [
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.glb",
+            "fileType": "glb",
+            "fileSize": 311868,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.glb?expires=1789976468421&signature=ZMuMaj-T0d2PveNYIq_yyIJ_dGuGlZ-Hrb1_fdHiiO_xs2iWE1V3euAOHWtPVGzdasQGHy2eqbUAG2q4Qm8f2Q"
+          },
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.json",
+            "fileType": "xeokit-metadata",
+            "fileSize": 440809,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.json?expires=1789976468422&signature=DoPNSrsyBKqjHWSe4_VN_dLHp8p1jFvGnXKzfxRnLIeyQy6yN8tHOVBdkFlnDuQwD43CvHNYRGRwGuz129lnRA"
+          },
+          {
+            "path": "job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.xkt",
+            "fileType": "xkt",
+            "fileSize": 732132,
+            "url": "http:/localhost:3007/media/job/job_01a0c2b25ae272f7809307ac5afa3d97/convert-step-2/Duplex.xkt?expires=1789976468422&signature=wMvBj9a5qE4HL-qyourI9Wy8MGboL8Ywa__nKXNirtlJHynwMN6WS10o-0_REphNocmYkMA-3xJ_AHgIAnj5Ug"
+          }
+        ]
+      }
+    }
+  ]
+}
