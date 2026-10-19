@@ -9,6 +9,7 @@
   "scripts": {
     "sample:checkJobPayload": "tsx src/samples/checkJobPayload.ts",
     "sample:convertIfc2Xkt": "tsx src/samples/convertIfc2Xkt.ts",
+    "sample:convertLaz2Potree": "tsx src/samples/convertLaz2Potree.ts",
     "sample:convertRvt2Glb": "tsx src/samples/convertRvt2Glb.ts",
     "sample:getSchemas": "tsx src/samples/getSchemas.ts",
     "test": "vitest run",

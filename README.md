@@ -133,6 +133,38 @@ pnpm sample:convertIfc2Xkt
 
 ---
 
+### `convertLaz2Potree` - Point Cloud (LAZ) to Potree Conversion
+
+Demonstrates a complete end-to-end conversion of a compressed LAS point cloud (LAZ) to Potree format, including job polling and automatic download/extraction of the generated octree.
+
+**Use Case:** Convert LiDAR / point cloud scans (LAZ) to Potree format for web-based point cloud visualization (e.g. in xeokit).
+
+```bash
+pnpm sample:convertLaz2Potree
+```
+
+**Features:**
+
+- **Asynchronous job submission** with webhook notifications
+- **Smart polling** with exponential backoff (1s, 3s, 9s, 27s, 81s)
+- **Automatic file download** from completed tasks
+- **ZIP extraction** for the archived Potree output
+- **Job state persistence** for debugging
+
+**Output:**
+
+- Potree octree, hierarchy and metadata files in `.sample-outputs/convertLaz2Potree/export-step-1/`
+- Job state in `job-state-{jobId}.json`
+
+**Conversion Pipeline:**
+
+1. Import LAZ point cloud from URL (`autzen-classified.laz`)
+2. Convert point cloud → Potree using xeoPotree
+3. Export the generated Potree files as a ZIP archive
+4. Download and extract all outputs
+
+---
+
 ### `convertRvt2Glb` - RVT Conversion with Webhook Monitoring
 
 Demonstrates RVT (Revit) to GLB conversion with real-time webhook monitoring via webhook.site.
@@ -283,6 +315,7 @@ For details on how jobs and tasks are structured, see [ARCHITECTURE.md](ARCHITEC
 pnpm sample:getSchemas
 pnpm sample:checkJobPayload
 pnpm sample:convertIfc2Xkt
+pnpm sample:convertLaz2Potree
 pnpm sample:convertRvt2Glb
 ```
 
