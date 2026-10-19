@@ -1,6 +1,6 @@
 /* eslint-disable */
 /**
- * 2026-10-14T10:14:02.381Z
+ * 2026-10-19T10:57:18.199Z
  * This file was automatically generated from XEOKIT-DATA-ENGINE JSONSchema by json-schema-to-typescript.
  * DO NOT MODIFY IT BY HAND. Instead, regenerate it if JSONSchema changed,
  */
@@ -23,6 +23,7 @@ export interface JobState {
         | "convert/glb/xkt"
         | "convert/ifc/glb"
         | "convert/metadata/csv"
+        | "convert/nwd/glb"
         | "convert/pointcloud/potree"
         | "convert/rfa/glb"
         | "convert/rvt/glb"
@@ -30,7 +31,12 @@ export interface JobState {
         | "export/upload"
         | "export/url"
         | "import/url";
-      properties: ("convert/ifc/glb/license" | "convert/rvt/glb/license" | "convert/step/glb/license")[];
+      properties: (
+        | "convert/ifc/glb/license"
+        | "convert/nwd/glb/license"
+        | "convert/rvt/glb/license"
+        | "convert/step/glb/license"
+      )[];
     }[];
     id: string;
   };
@@ -41,26 +47,52 @@ export interface JobState {
         engine:
           | {
               name: "xeoIFCv2";
-              version: "1.0.21";
               options?: {
                 configJson?: {
                   [k: string]: unknown;
                 };
               };
+              /**
+               * @deprecated
+               * Deprecated. The server ignores this value. versions.env pins the engine version.
+               */
+              version?: string;
             }
           | {
               name: "xeoIfc";
-              version: "5.11.15" | "5.6.10" | "5.6.11";
               options?: {
                 configJson?: {
                   [k: string]: unknown;
                 };
                 maxFileSizeInMB?: number;
               };
+              /**
+               * @deprecated
+               * Deprecated. The server ignores this value. versions.env pins the engine version.
+               */
+              version?: string;
             };
         id: string;
         input: string;
         operation: "convert/ifc/glb";
+        [k: string]: unknown;
+      }
+    | {
+        engine: {
+          name: "xeoNwd";
+          options?: {
+            allowPartial?: boolean;
+            origin?: string | "auto";
+          };
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
+        };
+        id: string;
+        input: string;
+        operation: "convert/nwd/glb";
         [k: string]: unknown;
       }
     | {
@@ -82,7 +114,11 @@ export interface JobState {
     | {
         engine: {
           name: "xeoRvt";
-          version: "0.2.0";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -92,7 +128,11 @@ export interface JobState {
     | {
         engine: {
           name: "xeoRvt";
-          version: "0.2.0";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -102,7 +142,11 @@ export interface JobState {
     | {
         engine: {
           name: "xeoStep";
-          version: "0.1.0";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -115,7 +159,11 @@ export interface JobState {
           options: {
             includeMetadata: boolean;
           };
-          version: "1.3.2";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -176,6 +224,8 @@ export interface JobState {
           | "ifc"
           | "las"
           | "laz"
+          | "nwc"
+          | "nwd"
           | "potree-hierarchy"
           | "potree-metadata"
           | "potree-octree"
@@ -206,6 +256,8 @@ export interface JobState {
             | "ifc"
             | "las"
             | "laz"
+            | "nwc"
+            | "nwd"
             | "potree-hierarchy"
             | "potree-metadata"
             | "potree-octree"
@@ -248,6 +300,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -267,22 +321,30 @@ export interface JobState {
         engine:
           | {
               name: "xeoIFCv2";
-              version: "1.0.21";
               options?: {
                 configJson?: {
                   [k: string]: unknown;
                 };
               };
+              /**
+               * @deprecated
+               * Deprecated. The server ignores this value. versions.env pins the engine version.
+               */
+              version?: string;
             }
           | {
               name: "xeoIfc";
-              version: "5.11.15" | "5.6.10" | "5.6.11";
               options?: {
                 configJson?: {
                   [k: string]: unknown;
                 };
                 maxFileSizeInMB?: number;
               };
+              /**
+               * @deprecated
+               * Deprecated. The server ignores this value. versions.env pins the engine version.
+               */
+              version?: string;
             };
         id: string;
         input: string;
@@ -304,6 +366,58 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
+              | "potree-hierarchy"
+              | "potree-metadata"
+              | "potree-octree"
+              | "rfa"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt"
+              | "xlsx";
+            path: string;
+            url?: string;
+          }[];
+          startedAt: string;
+        };
+        engine: {
+          name: "xeoNwd";
+          options?: {
+            allowPartial?: boolean;
+            origin?: string | "auto";
+          };
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
+        };
+        id: string;
+        input: string;
+        operation: "convert/nwd/glb";
+      }
+    | {
+        context: {
+          endedAt: string;
+          errors: {
+            code: number;
+            message: string;
+          }[];
+          files: {
+            fileSize: number;
+            fileType:
+              | "archive"
+              | "csv"
+              | "glb"
+              | "ifc"
+              | "las"
+              | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -350,6 +464,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -368,7 +484,11 @@ export interface JobState {
         };
         engine: {
           name: "xeoRvt";
-          version: "0.2.0";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -390,6 +510,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -408,7 +530,11 @@ export interface JobState {
         };
         engine: {
           name: "xeoRvt";
-          version: "0.2.0";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -430,6 +556,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -448,7 +576,11 @@ export interface JobState {
         };
         engine: {
           name: "xeoStep";
-          version: "0.1.0";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -470,6 +602,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -491,7 +625,11 @@ export interface JobState {
           options: {
             includeMetadata: boolean;
           };
-          version: "1.3.2";
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -513,6 +651,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -536,6 +676,8 @@ export interface JobState {
           | "ifc"
           | "las"
           | "laz"
+          | "nwc"
+          | "nwd"
           | "potree-hierarchy"
           | "potree-metadata"
           | "potree-octree"
@@ -570,6 +712,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -646,6 +790,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
@@ -673,6 +819,8 @@ export interface JobState {
             | "ifc"
             | "las"
             | "laz"
+            | "nwc"
+            | "nwd"
             | "potree-hierarchy"
             | "potree-metadata"
             | "potree-octree"
@@ -707,6 +855,8 @@ export interface JobState {
               | "ifc"
               | "las"
               | "laz"
+              | "nwc"
+              | "nwd"
               | "potree-hierarchy"
               | "potree-metadata"
               | "potree-octree"
