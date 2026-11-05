@@ -52,7 +52,7 @@ The Xeokit Data Engine uses **webhooks** for job progress notifications. You'll 
 - `job.succeeded` - Job completed successfully
 - `job.failed` - Job encountered an error
 
-> **Required for:** The `convertIfc2Xkt` and `convertRvt2Glb` samples require webhook configuration to run successfully.
+> **Required for:** The `convertIfc2Xkt`, `convertRvt2Glb` and `convertNwd2Glb` samples require webhook configuration to run successfully.
 
 **Testing Webhooks with webhook.site:**
 
@@ -133,6 +133,38 @@ pnpm sample:convertIfc2Xkt
 
 ---
 
+### `convertLaz2Potree` - Point Cloud (LAZ) to Potree Conversion
+
+Demonstrates a complete end-to-end conversion of a compressed LAS point cloud (LAZ) to Potree format, including job polling and automatic download/extraction of the generated octree.
+
+**Use Case:** Convert LiDAR / point cloud scans (LAZ) to Potree format for web-based point cloud visualization (e.g. in xeokit).
+
+```bash
+pnpm sample:convertLaz2Potree
+```
+
+**Features:**
+
+- **Asynchronous job submission** with webhook notifications
+- **Smart polling** with exponential backoff (1s, 3s, 9s, 27s, 81s)
+- **Automatic file download** from completed tasks
+- **ZIP extraction** for the archived Potree output
+- **Job state persistence** for debugging
+
+**Output:**
+
+- Potree octree, hierarchy and metadata files in `.sample-outputs/convertLaz2Potree/export-step-1/`
+- Job state in `job-state-{jobId}.json`
+
+**Conversion Pipeline:**
+
+1. Import LAZ point cloud from URL (`autzen-classified.laz`)
+2. Convert point cloud → Potree using xeoPotree
+3. Export the generated Potree files as a ZIP archive
+4. Download and extract all outputs
+
+---
+
 ### `convertRvt2Glb` - RVT Conversion with Webhook Monitoring
 
 Demonstrates RVT (Revit) to GLB conversion with real-time webhook monitoring via webhook.site.
@@ -160,6 +192,40 @@ pnpm sample:convertRvt2Glb
 
 1. Import RVT file from URL
 2. Convert RVT → GLB using xeoRvt
+3. Monitor via webhook.site for completion
+4. Download output files
+
+---
+
+### `convertNwd2Glb` - NWD Conversion with Webhook Monitoring
+
+Demonstrates NWD (Navisworks) to GLB conversion with real-time webhook monitoring via webhook.site.
+
+**Use Case:** Convert Navisworks files to GLB format and monitor progress through webhook events.
+
+```bash
+pnpm sample:convertNwd2Glb <model-url>
+```
+
+The model URL is **required**. It must be publicly reachable and point to a `.nwd` or `.nwc` file — the file type is inferred from the extension.
+
+**Features:**
+
+- **Asynchronous job submission** with webhook.site integration
+- **Webhook monitoring** - Polls webhook.site for job events instead of direct API
+- **Smart polling** - Checks every 5 seconds for up to 5 minutes
+- **Event persistence** - Saves all webhook events to files
+- **Automatic downloads** - Downloads GLB files when job succeeds
+
+**Output:**
+
+- Webhook events in `.sample-outputs/convertNwd2Glb/webhooks/`
+- GLB files in `.sample-outputs/convertNwd2Glb/convert-step-1/`
+
+**Conversion Pipeline:**
+
+1. Import NWD file from URL
+2. Convert NWD → GLB using xeoNwd
 3. Monitor via webhook.site for completion
 4. Download output files
 
@@ -283,6 +349,7 @@ For details on how jobs and tasks are structured, see [ARCHITECTURE.md](ARCHITEC
 pnpm sample:getSchemas
 pnpm sample:checkJobPayload
 pnpm sample:convertIfc2Xkt
+pnpm sample:convertLaz2Potree
 pnpm sample:convertRvt2Glb
 ```
 
