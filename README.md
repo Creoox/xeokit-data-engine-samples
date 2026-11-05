@@ -52,7 +52,7 @@ The Xeokit Data Engine uses **webhooks** for job progress notifications. You'll 
 - `job.succeeded` - Job completed successfully
 - `job.failed` - Job encountered an error
 
-> **Required for:** The `convertIfc2Xkt`, `convertRvt2Glb` and `convertNwd2Glb` samples require webhook configuration to run successfully.
+> **Required for:** The `convertIfc2Xkt`, `convertRvt2Glb`, `convertNwd2Glb` and `convertRvm2Glb` samples require webhook configuration to run successfully.
 
 **Testing Webhooks with webhook.site:**
 
@@ -231,6 +231,32 @@ The model URL is **required**. It must be publicly reachable and point to a `.nw
 
 ---
 
+### `convertRvm2Glb` - RVM (+ optional attributes) Conversion with Webhook Monitoring
+
+Demonstrates RVM (AVEVA PDMS / E3D) to GLB conversion, optionally enriched with an RVM attributes file, with real-time webhook monitoring via webhook.site.
+
+**Use Case:** Convert plant models exported as RVM to GLB format, carrying over element attributes when an attributes file is available.
+
+```bash
+pnpm sample:convertRvm2Glb <rvm-url> [attributes-url]
+```
+
+The RVM URL is **required** and must point to a publicly reachable `.rvm` file. The attributes URL (ATT/ATR) is **optional** — when given, it is imported as an `rvm-attributes` file and passed to the converter via `additionalInputs.attributes`.
+
+**Output:**
+
+- Webhook events in `.sample-outputs/convertRvm2Glb/webhooks/`
+- GLB files in `.sample-outputs/convertRvm2Glb/convert-step-1/`
+
+**Conversion Pipeline:**
+
+1. Import RVM file (and optionally the attributes file) from URL
+2. Convert RVM → GLB using xeoRvm
+3. Monitor via webhook.site for completion
+4. Download output files
+
+---
+
 ## Available bash scripts
 
 ### `submit_job.sh` — Submit a job request
@@ -350,6 +376,7 @@ pnpm sample:getSchemas
 pnpm sample:checkJobPayload
 pnpm sample:convertIfc2Xkt
 pnpm sample:convertLaz2Potree
+pnpm sample:convertRvm2Glb <rvm-url> [attributes-url]
 pnpm sample:convertRvt2Glb
 ```
 
