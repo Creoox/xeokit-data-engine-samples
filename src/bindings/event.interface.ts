@@ -1,6 +1,6 @@
 /* eslint-disable */
 /**
- * 2026-10-19T10:57:18.199Z
+ * 2026-11-05T11:49:40.231Z
  * This file was automatically generated from XEOKIT-DATA-ENGINE JSONSchema by json-schema-to-typescript.
  * DO NOT MODIFY IT BY HAND. Instead, regenerate it if JSONSchema changed,
  */
@@ -26,6 +26,7 @@ export interface JobState {
         | "convert/nwd/glb"
         | "convert/pointcloud/potree"
         | "convert/rfa/glb"
+        | "convert/rvm/glb"
         | "convert/rvt/glb"
         | "convert/step/glb"
         | "export/upload"
@@ -75,7 +76,6 @@ export interface JobState {
         id: string;
         input: string;
         operation: "convert/ifc/glb";
-        [k: string]: unknown;
       }
     | {
         engine: {
@@ -93,23 +93,41 @@ export interface JobState {
         id: string;
         input: string;
         operation: "convert/nwd/glb";
-        [k: string]: unknown;
       }
     | {
         engine: {
           name: "xeoPotree";
-          version: "2.1.5";
           options?: {
             attributes?: string[];
             encoding?: "BROTLI" | "UNCOMPRESSED";
             method?: "poisson" | "poisson_average" | "random";
             projection?: string;
           };
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
         operation: "convert/pointcloud/potree";
-        [k: string]: unknown;
+      }
+    | {
+        engine: {
+          name: "xeoRvm";
+          options?: {
+            allowPartial?: boolean;
+            origin?: string | "auto";
+            pruneEmptyGroups?: boolean;
+          };
+        };
+        id: string;
+        input: string;
+        operation: "convert/rvm/glb";
+        additionalInputs?: {
+          attributes?: string;
+        };
       }
     | {
         engine: {
@@ -123,7 +141,6 @@ export interface JobState {
         id: string;
         input: string;
         operation: "convert/rfa/glb";
-        [k: string]: unknown;
       }
     | {
         engine: {
@@ -137,7 +154,6 @@ export interface JobState {
         id: string;
         input: string;
         operation: "convert/rvt/glb";
-        [k: string]: unknown;
       }
     | {
         engine: {
@@ -151,7 +167,6 @@ export interface JobState {
         id: string;
         input: string;
         operation: "convert/step/glb";
-        [k: string]: unknown;
       }
     | {
         engine: {
@@ -168,7 +183,36 @@ export interface JobState {
         id: string;
         input: string;
         operation: "convert/glb/xkt";
-        [k: string]: unknown;
+      }
+    | {
+        fileType:
+          | "archive"
+          | "csv"
+          | "glb"
+          | "ifc"
+          | "las"
+          | "laz"
+          | "nwc"
+          | "nwd"
+          | "potree-hierarchy"
+          | "potree-metadata"
+          | "potree-octree"
+          | "rfa"
+          | "rvm"
+          | "rvm-attributes"
+          | "rvt"
+          | "step"
+          | "unknown"
+          | "xeokit-manifest"
+          | "xeokit-metadata"
+          | "xkt"
+          | "xlsx";
+        id: string;
+        operation: "import/url";
+        url: string;
+        headers?: {
+          [k: string]: string;
+        };
       }
     | {
         id: string;
@@ -214,35 +258,6 @@ export interface JobState {
           version?: number;
           [k: string]: unknown;
         };
-        [k: string]: unknown;
-      }
-    | {
-        fileType:
-          | "archive"
-          | "csv"
-          | "glb"
-          | "ifc"
-          | "las"
-          | "laz"
-          | "nwc"
-          | "nwd"
-          | "potree-hierarchy"
-          | "potree-metadata"
-          | "potree-octree"
-          | "rfa"
-          | "rvt"
-          | "step"
-          | "unknown"
-          | "xeokit-manifest"
-          | "xeokit-metadata"
-          | "xkt"
-          | "xlsx";
-        id: string;
-        operation: "import/url";
-        url: string;
-        headers?: {
-          [k: string]: string;
-        };
       }
     | {
         id: string;
@@ -262,6 +277,8 @@ export interface JobState {
             | "potree-metadata"
             | "potree-octree"
             | "rfa"
+            | "rvm"
+            | "rvm-attributes"
             | "rvt"
             | "step"
             | "unknown"
@@ -306,6 +323,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -372,6 +391,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -422,6 +443,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -436,13 +459,17 @@ export interface JobState {
         };
         engine: {
           name: "xeoPotree";
-          version: "2.1.5";
           options?: {
             attributes?: string[];
             encoding?: "BROTLI" | "UNCOMPRESSED";
             method?: "poisson" | "poisson_average" | "random";
             projection?: string;
           };
+          /**
+           * @deprecated
+           * Deprecated. The server ignores this value. versions.env pins the engine version.
+           */
+          version?: string;
         };
         id: string;
         input: string;
@@ -470,6 +497,59 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
+              | "rvt"
+              | "step"
+              | "unknown"
+              | "xeokit-manifest"
+              | "xeokit-metadata"
+              | "xkt"
+              | "xlsx";
+            path: string;
+            url?: string;
+          }[];
+          startedAt: string;
+        };
+        engine: {
+          name: "xeoRvm";
+          options?: {
+            allowPartial?: boolean;
+            origin?: string | "auto";
+            pruneEmptyGroups?: boolean;
+          };
+        };
+        id: string;
+        input: string;
+        operation: "convert/rvm/glb";
+        additionalInputs?: {
+          attributes?: string;
+        };
+      }
+    | {
+        context: {
+          endedAt: string;
+          errors: {
+            code: number;
+            message: string;
+          }[];
+          files: {
+            fileSize: number;
+            fileType:
+              | "archive"
+              | "csv"
+              | "glb"
+              | "ifc"
+              | "las"
+              | "laz"
+              | "nwc"
+              | "nwd"
+              | "potree-hierarchy"
+              | "potree-metadata"
+              | "potree-octree"
+              | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -516,6 +596,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -562,6 +644,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -608,6 +692,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -657,6 +743,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -682,6 +770,8 @@ export interface JobState {
           | "potree-metadata"
           | "potree-octree"
           | "rfa"
+          | "rvm"
+          | "rvm-attributes"
           | "rvt"
           | "step"
           | "unknown"
@@ -718,6 +808,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -796,6 +888,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
@@ -825,6 +919,8 @@ export interface JobState {
             | "potree-metadata"
             | "potree-octree"
             | "rfa"
+            | "rvm"
+            | "rvm-attributes"
             | "rvt"
             | "step"
             | "unknown"
@@ -861,6 +957,8 @@ export interface JobState {
               | "potree-metadata"
               | "potree-octree"
               | "rfa"
+              | "rvm"
+              | "rvm-attributes"
               | "rvt"
               | "step"
               | "unknown"
